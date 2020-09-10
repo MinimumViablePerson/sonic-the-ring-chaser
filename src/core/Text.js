@@ -1,4 +1,4 @@
-function Text({
+function Text ({
   engine,
   content = 'example text',
   x = 10,
@@ -41,11 +41,11 @@ function Text({
     ctx.textBaseline = 'hanging'
 
     const textDimensions = ctx.measureText(content)
+    window.textDimensions = textDimensions
     const centeredWidth = element.width / 2 - textDimensions.width / 2
 
     if (background !== null) {
       ctx.fillStyle = background
-      window.textDimensions = textDimensions
       ctx.fillRect(
         centered ? centeredWidth - 5 : x - 5,
         y - 5,

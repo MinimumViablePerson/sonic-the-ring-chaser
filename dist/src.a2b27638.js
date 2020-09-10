@@ -1151,11 +1151,11 @@ function Text(_ref) {
     ctx.font = fontStyle;
     ctx.textBaseline = 'hanging';
     var textDimensions = ctx.measureText(content);
+    window.textDimensions = textDimensions;
     var centeredWidth = element.width / 2 - textDimensions.width / 2;
 
     if (background !== null) {
       ctx.fillStyle = background;
-      window.textDimensions = textDimensions;
       ctx.fillRect(centered ? centeredWidth - 5 : x - 5, y - 5, textDimensions.width + 10, textDimensions.actualBoundingBoxDescent + 10);
     }
 
@@ -1195,19 +1195,24 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function ScoreText(_ref) {
   var engine = _ref.engine;
-  var x = engine.canvas.element.width - 100;
+  var content = "Score: 0";
+  var textMeasures = engine.canvas.ctx.measureText(content);
+  var x = engine.canvas.element.width - textMeasures.width - 10;
   var y = 10;
   var text = (0, _Text.default)({
     engine: engine,
-    content: 'Score: ',
+    content: content,
     fontStyle: '20px sans-serif',
     x: x,
     y: y
   });
 
   var draw = function draw() {
+    var content = "Score: ".concat(engine.getState().score);
+    var textMeasures = engine.canvas.ctx.measureText(content);
     text.update({
-      content: "Score: ".concat(engine.getState().score)
+      content: content,
+      x: engine.canvas.element.width - textMeasures.actualBoundingBoxRight - 10
     });
     text.render();
   };
@@ -2175,7 +2180,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52531" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63865" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
