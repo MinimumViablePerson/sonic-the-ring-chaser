@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+
+  height: 100vh;
+  width: 100vw;
+
+  display: grid;
+  place-items: center;
+  background: linear-gradient(to right, #141c36, #142b75);
+}
+
+canvas {
+  border: 1px solid black;
+  cursor: none;
+
+  will-change: scale;
+  width: 80vw;
+  max-width: 900px;
+}
+
+
+/*# sourceMappingURL=/styles.dd855970.css.map */
